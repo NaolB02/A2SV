@@ -1,0 +1,36 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        
+        def findNextGreaterElement(index, arr):
+            nextGreat = arr[index]
+            newIndex = index
+            while newIndex < len(arr):
+                if arr[newIndex] > nextGreat:
+                    nextGreat = arr[newIndex]
+                    break
+                newIndex += 1
+                
+            if newIndex >= len(arr):
+                return index
+            
+            return newIndex
+        
+        nextGreaterElements = []
+        
+        for i in range(len(nums1)):
+            j = nums2.index(nums1[i])
+            
+            if j + 1 >= len(nums2):
+                nextGreaterElements.append(-1)
+            
+            else:
+                ind = findNextGreaterElement(j, nums2)
+                if ind > j:
+                    nextGreaterElements.append(nums2[ind])
+                    
+                else: 
+                    nextGreaterElements.append(-1)
+
+        return nextGreaterElements
+                    
+        
