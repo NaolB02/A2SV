@@ -1,0 +1,16 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        answer = [0] * len(temperatures)
+        monStack = []
+        i = 0
+        
+        while i < len(temperatures):
+            
+            while monStack and temperatures[i] > monStack[-1][1]:
+                ind, tem = monStack.pop()
+                answer[ind] = i - ind
+            
+            monStack.append([i, temperatures[i]])
+            i += 1
+        
+        return answer
