@@ -1,0 +1,23 @@
+class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack = []
+        
+        for character in s:
+            
+            if character == ")":
+                str1 = ''
+                while stack[-1] != "(":
+                    str1 += stack.pop()
+                
+                stack.pop()
+                
+                for i in str1:
+                    stack.append(i)
+            
+            else:
+                stack.append(character)
+            
+        
+        revstr = "".join(stack)
+        return revstr
+              
