@@ -1,0 +1,29 @@
+class Solution:
+    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
+        maxsum = 0
+        temp = min(firstLen, secondLen)
+        firstLen = max(firstLen, secondLen)
+        secondLen = temp
+        for i in range(len(nums) - firstLen + 1):
+            fsum = sum(nums[i: i + firstLen])
+            
+            for j in range(len(nums)- secondLen + 1):
+                if j >= i and j < i + firstLen:
+                    continue
+                
+                if j + secondLen > i and j + secondLen <= i + firstLen:
+                    continue
+                
+                ssum = sum(nums[j : j + secondLen])
+
+                # if fsum + ssum > maxsum:
+                #     print("first: ", nums[i: i + firstLen])
+                #     print("second: ", nums[j : j + secondLen])
+                #     print("i: ", i)
+                #     print("j: ", j)
+                #     print("maxsum: ", fsum + ssum)
+                #     print()
+
+                maxsum = max(maxsum, fsum + ssum)
+        
+        return maxsum
