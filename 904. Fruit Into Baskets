@@ -1,0 +1,18 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        start, end = 0, 0
+        basket = {}
+        maxFruits = 0
+
+        while end < len(fruits):
+            basket[fruits[end]] = end
+
+            if len(basket) > 2:
+                minIndex = min(basket.values())
+                del basket[fruits[minIndex]]
+                start = minIndex + 1
+            
+            maxFruits = max(maxFruits, end - start + 1)            
+            end += 1
+        
+        return maxFruits
