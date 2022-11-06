@@ -7,9 +7,7 @@ class NumArray:
             self.preSum.append(self.preSum[i - 1] + nums[i])  
 
     def sumRange(self, left: int, right: int) -> int:
-        if left == 0:
-            return self.preSum[right]
-        return self.preSum[right] - self.preSum[left - 1]
+        return self.preSum[right] - self.preSum[left] + self.nums[left]
         
 
 
